@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To-Do List Modern</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Dekorasi latar belakang -->
+  <div class="bg-decoration" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <main class="app">
+    <!-- Header -->
+    <header class="app-header">
+      <h1 class="app-title">To-Do List</h1>
+      <p class="app-subtitle">Kelola tugasmu dengan mudah</p>
+    </header>
+
+    <!-- Form tambah tugas -->
+    <form id="todo-form" class="todo-form" autocomplete="off">
+      <input
+        type="text"
+        id="todo-input"
+        class="todo-input"
+        placeholder="Tambahkan tugas baru..."
+        maxlength="120"
+        aria-label="Tugas baru"
+      />
+      <button type="submit" class="btn-add" aria-label="Tambah tugas">
+        <span class="btn-add-icon">+</span>
+      </button>
+    </form>
+
+    <!-- Filter -->
+    <div class="filters" role="tablist" aria-label="Filter tugas">
+      <button class="filter-btn active" data-filter="all">Semua</button>
+      <button class="filter-btn" data-filter="active">Aktif</button>
+      <button class="filter-btn" data-filter="completed">Selesai</button>
+    </div>
+
+    <!-- Daftar tugas -->
+    <ul id="todo-list" class="todo-list" aria-live="polite"></ul>
+
+    <!-- Footer / statistik -->
+    <footer class="app-footer">
+      <span id="todo-count" class="todo-count">0 tugas tersisa</span>
+      <button id="clear-completed" class="btn-clear">Hapus selesai</button>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+/* ============================================
+   TO-DO LIST MODERN
+   Gaya: Glassmorphism + Biru Monokromatik
+   ============================================ */
+
+/* ---------- Variabel Warna (Biru Monokromatik) ---------- */
+:root {
+  --blue-900: #0a1a3f;
+  --blue-800: #0f2a5e;
+  --blue-700: #143a7d;
+  --blue-600: #1a4a9c;
+  --blue-500: #1f5ab8;
+  --blue-400: #2f6fd4;
+  --blue-300: #5b92e0;
+  --blue-200: #8fb6ec;
+  --blue-100: #c3d8f5;
+  --blue-50:  #e8f0fc;
+
+  --text-primary:   #eaf1fd;
+  --text-secondary: #a9c3e8;
+  --text-muted:     #7d9cc9;
+
+  --glass-bg:        rgba(20, 58, 125, 0.25);
+  --glass-border:    rgba(143, 182, 236, 0.25);
+  --glass-highlight: rgba(255, 255, 255, 0.08);
+
+  --danger: #e05b6b;
+  --success: #4cd6a0;
+
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+
+  --shadow: 0 8px 32px rgba(10, 26, 63, 0.35);
+  --transition: 0.25s ease;
+}
+
+/* ---------- Reset & Dasar ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  color: var(--text-primary);
+  background: linear-gradient(135deg, var(--blue-900), var(--blue-700) 55%, var(--blue-600));
+  overflow-x: hidden;
+}
+
+/* ---------- Dekorasi Latar Belakang ---------- */
+.bg-decoration {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+}
+
+.blob-1 {
+  width: 420px;
+  height: 420px;
+  top: -120px;
+  left: -100px;
+  background: var(--blue-400);
+}
+
+.blob-2 {
+  width: 360px;
+  height: 360px;
+  bottom: -100px;
+  right: -80px;
+  background: var(--blue-300);
+}
+
+.blob-3 {
+  width: 260px;
+  height: 260px;
+  top: 40%;
+  left: 60%;
+  background: var(--blue-500);
+  opacity: 0.35;
+}
+
+/* ---------- Kontainer Aplikasi (Glass) ---------- */
+.app {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+  padding: 32px;
+  border-radius: var(--radius-lg);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--shadow);
+}
+
+/* ---------- Header ---------- */
+.app-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.app-title {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: linear-gradient(90deg, var(--blue-100), var(--blue-300));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.app-subtitle {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* ---------- Form Tambah Tugas ---------- */
+.todo-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.todo-input {
+  flex: 1;
+  padding: 14px 18px;
+  font-size: 1rem;
+  color: var(--text-primary);
+  background: var(--glass-highlight);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.todo-input::placeholder {
+  color: var(--text-muted);
+}
+
+.todo-input:focus {
+  border-color: var(--blue-300);
+  box-shadow: 0 0 0 3px rgba(91, 146, 224, 0.25);
+}
+
+.btn-add {
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: #fff;
+  background: linear-gradient(135deg, var(--blue-400), var(--blue-600));
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.btn-add:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(47, 111, 212, 0.45);
+}
+
+.btn-add:active {
+  transform: translateY(0);
+}
+
+.btn-add-icon {
+  line-height: 1;
+}
+
+/* ---------- Filter ---------- */
+.filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding: 6px;
+  background: var(--glass-highlight);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+}
+
+.filter-btn {
+  flex: 1;
+  padding: 8px 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.filter-btn:hover {
+  color: var(--text-primary);
+}
+
+.filter-btn.active {
+  color: #fff;
+  background: linear-gradient(135deg, var(--blue-500), var(--blue-700));
+  box-shadow: 0 4px 12px rgba(31, 90, 184, 0.4);
+}
+
+/* ---------- Daftar Tugas ---------- */
+.todo-list {
+  list-style: none;
+  max-height: 380px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  padding-right: 4px;
+}
+
+.todo-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.todo-list::-webkit-scrollbar-thumb {
+  background: var(--blue-400);
+  border-radius: 4px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  background: var(--glass-highlight);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  transition: transform var(--transition), opacity var(--transition);
+  animation: slide-in 0.3s ease;
+}
+
+.todo-item:hover {
+  transform: translateX(4px);
+}
+
+.todo-item.completed {
+  opacity: 0.55;
+}
+
+.todo-item.completed .todo-text {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+/* Checkbox kustom */
+.todo-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border: 2px solid var(--blue-300);
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.todo-checkbox:checked {
+  background: var(--blue-400);
+  border-color: var(--blue-400);
+}
+
+.todo-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 6px;
+  width: 5px;
+  height: 10px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.todo-text {
+  flex: 1;
+  font-size: 0.95rem;
+  word-break: break-word;
+  transition: color var(--transition);
+}
+
+/* Tombol hapus */
+.btn-delete {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition);
+}
+
+.btn-delete:hover {
+  color: var(--danger);
+  background: rgba(224, 91, 107, 0.15);
+}
+
+/* Pesan kosong */
+.empty-message {
+  text-align: center;
+  padding: 32px 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- Footer ---------- */
+.app-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid var(--glass-border);
+}
+
+.todo-count {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.btn-clear {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color var(--transition);
+}
+
+.btn-clear:hover {
+  color: var(--danger);
+}
+
+/* ---------- Animasi ---------- */
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Responsif ---------- */
+@media (max-width: 480px) {
+  .app {
+    padding: 24px 18px;
+  }
+
+  .app-title {
+    font-size: 1.6rem;
+  }
+}
